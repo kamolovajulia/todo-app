@@ -1,13 +1,13 @@
-import React, {Component} from "react";
+import React from "react";
 import Task from "../task/task";
 
 
-const TaskList = ({ todo, onDelete }) => {
+const TaskList = ({ todo, onDelete, onEdit, onComplete }) => {
 
     const elements = todo.map((el)=>{
         const {id, ...itemProps}=el;
         return (
-            <Task {...itemProps} onDelete={()=>onDelete(id)}/> 
+            <Task {...itemProps} onDelete={()=>onDelete(id)} onComplete={()=>onComplete(id)} onEdit={()=>onEdit(id)}/> 
         )
     });
         return (
