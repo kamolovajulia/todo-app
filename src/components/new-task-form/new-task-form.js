@@ -24,7 +24,6 @@ export default class NewTaskForm extends Component {
         
         return (
         <form onSubmit={this.submitState}>
-           {/* <input type="text" className="edit" value="Editing task" />  */}
            <input className="new-todo" placeholder="What needs to be done?" onChange={this.updateLabel} value={this.state.label} autofocus></input>
         </form>
     );
