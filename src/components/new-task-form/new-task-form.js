@@ -31,7 +31,6 @@ export default class NewTaskForm extends Component {
           placeholder='What needs to be done?'
           onChange={this.updateLabel}
           value={this.state.label}
-          autoFocus
         ></input>
       </form>
     );
