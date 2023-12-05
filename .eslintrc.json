@@ -1,0 +1,52 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        "airbnb/base",
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
+        "plugin:jsx-a11y/recommended",
+        "plugin:react-hooks/recommended",
+        "prettier"
+    ],
+    "rules": {
+        "comma-dangle": 0,
+        "no-unused-vars": [
+            "error",
+            {
+                "varsIgnorePattern": "React"
+            }
+        ],
+        "linebreak-style": 0,
+        "max-len": [
+            "error",
+            {
+                "code": 130
+            }
+        ],
+        "react/prop-types": 1,
+        "no-return-assign": 1,
+        "no-param-reassign": 1,
+        "object-curly-newline": 0
+    },
+    "plugins": [
+        "react"
+    ],
+    "parserOptions": {
+        "sourceType": "module",
+        "parser": "babel-eslint",
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest"
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    }
+}

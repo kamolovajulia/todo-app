@@ -1,36 +1,34 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import TaskFilter from "../tasks-filter/task-filter";
+import TaskFilter from '../tasks-filter/task-filter';
+
+import style from './footer.module.css';
 
 const Footer = (props) => {
-  const {tasksCount, stateFilter, onAllTasks, onShowActive, onShowCompleted, clearCompleted} = props;
+  const { tasksCount, stateFilter, onAllTasks, onShowActive, onShowCompleted, clearCompleted } = props;
   return (
-    <footer className="footer">
-      <span className="todo-count">{tasksCount} items left</span>
-      <ul className="filters">
-        <li>
-          <TaskFilter label='All' className={stateFilter.all} onClick={()=>onAllTasks()}/>
-        </li>
-        <li>
-          <TaskFilter label='Active' className={stateFilter.active} onClick={()=>onShowActive()}/>
-        </li>
-        <li>
-          <TaskFilter label='Completed' className={stateFilter.completed} onClick={()=>onShowCompleted()}/>
-        </li>
+    <footer className={style.footer}>
+      <span className={style.todoCount}>{tasksCount} items left</span>
+      <ul className={style.filters}>
+        <TaskFilter label='All' status={stateFilter.all} onClick={() => onAllTasks()} />
+        <TaskFilter label='Active' status={stateFilter.active} onClick={() => onShowActive()} />
+        <TaskFilter label='Completed' status={stateFilter.completed} onClick={() => onShowCompleted()} />
       </ul>
-      <TaskFilter label='Clear completed' className='clear-completed' onClick={()=>clearCompleted()}/>
+      <button label='Clear completed' className={style.clearCompleted} onClick={() => clearCompleted()}>
+        Clear completed
+      </button>
     </footer>
   );
 };
 
 Footer.propTypes = {
-  tasksCount: PropTypes.number, 
-  stateFilter: PropTypes.object, 
-  onAllTasks: PropTypes.func, 
+  tasksCount: PropTypes.number,
+  stateFilter: PropTypes.object,
+  onAllTasks: PropTypes.func,
   onShowActive: PropTypes.func,
   onShowCompleted: PropTypes.func,
-  clearCompleted: PropTypes.func
-}
+  clearCompleted: PropTypes.func,
+};
 
 export default Footer;
