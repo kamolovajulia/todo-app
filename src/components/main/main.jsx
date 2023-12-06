@@ -127,8 +127,7 @@ export default class Main extends Component {
       const newArray = todoData.filter((el) => !el.completedStatus);
       document.getElementsByClassName('toggle').checked = false;
       return {
-        todoData: newArray,
-        allTodoData: newArray,
+        todoData: newArray
       };
     });
   };
