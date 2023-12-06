@@ -17,9 +17,8 @@ export default class NewTaskForm extends Component {
 
   updateLabel = (e) => {
     const text = e.target.value;
-    const label = text[0].toUpperCase() + text.slice(1);
     this.setState({
-      label,
+      label: text,
     });
   };
 

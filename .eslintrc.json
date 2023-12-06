@@ -14,6 +14,10 @@
         "prettier"
     ],
     "rules": {
+        "quotes": [
+            "error",
+            "single"
+        ],
         "comma-dangle": 0,
         "no-unused-vars": [
             "error",
@@ -31,7 +35,9 @@
         "react/prop-types": 0,
         "no-return-assign": 0,
         "no-param-reassign": 0,
-        "object-curly-newline": 0
+        "object-curly-newline": 0,
+        "import/no-unresolved": 0,
+        "import/extensions": 0
     },
     "plugins": [
         "react"
@@ -47,6 +53,16 @@
     "settings": {
         "react": {
             "version": "detect"
+        },
+        "import/resolver": {
+            "node": {
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    ".ts",
+                    ".tsx"
+                ]
+            }
         }
     }
 }

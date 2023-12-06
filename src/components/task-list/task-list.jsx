@@ -5,8 +5,21 @@ import Task from '../task/task';
 
 import style from './task-list.module.css';
 
-const TaskList = ({ todo, onDelete, onEdit, onComplete, onChange }) => {
-  const elements = todo.map((el) => {
+const TaskList = ({ todo, filter, onDelete, onEdit, onComplete, onChange }) => {
+
+  let elements;
+
+  if (filter.completed) {
+    elements = todo.filter((el) => el.completedStatus)
+  }
+  if (filter.active) {
+    elements = todo.filter((el) => !el.completedStatus)
+  }
+  if (filter.all) {
+    elements = [...todo]
+  }
+
+  elements = elements.map((el) => {
     const { id, ...itemProps } = el;
     return (
       <Task
