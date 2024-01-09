@@ -1,4 +1,5 @@
-.newTodo {
+.newTodo,
+.newTodoForm__timer {
   position: relative;
   margin: 0;
   width: 100%;
@@ -19,6 +20,17 @@
   box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
 }
 
-.form {
-  margin: 0;
+.newTodo {
+  width: 70%;
+}
+
+.newTodoForm {
+  /* margin: 0; */
+  display: flex;
+  margin-bottom: 0;
+}
+
+.newTodoForm__timer {
+  width: 15%;
+  padding-left: 16px;
 }

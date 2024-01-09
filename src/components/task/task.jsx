@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { formatDistanceToNow } from 'date-fns';
 
 import style from './task.module.css';
+import Timer from '../timer/timer';
 
 const Task = (props) => {
-  const { text, date, completedStatus, editingStatus, onDelete, onComplete, onEdit, onChange } = props;
+  const { text, date, min, sec, completedStatus, editingStatus, onDelete, onComplete, onEdit, onChange } = props;
   const taskData = formatDistanceToNow(date, { includeSeconds: true }).replace('less than', '');
   let result;
   const [label, setLabel] = useState(text);
@@ -35,8 +36,11 @@ const Task = (props) => {
           checked={completedStatus}
         />
         <label>
-          <span className={style.description}>{text}</span>
-          <span className={style.created}>created {taskData} ago</span>
+          <span className={style.title}>{text}</span>
+          <span className={`${style.description} ${style.timer}`}>
+            <Timer min={min} sec={sec} />
+          </span>
+          <span className={`${style.created} ${style.description}`}>created {taskData} ago</span>
         </label>
         <button className={`${style.icon} ${style.icon__edit}`} onClick={onEdit}></button>
         <button className={`${style.icon} ${style.icon__destroy}`} onClick={onDelete}></button>

@@ -1,0 +1,18 @@
+li .icon__pause,
+li .icon__play {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+}
+
+li .icon__pause {
+    margin-right: 8px;
+}
+
+.icon__pause:after {
+    content: '⏸';
+}
+
+.icon__play:after {
+    content: '▶';
+}

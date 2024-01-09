@@ -18,13 +18,15 @@ export default class Main extends Component {
     },
   };
 
-  createNewTask(text) {
+  createNewTask(text, min, sec) {
     return {
       text,
       completedStatus: false,
       editingStatus: false,
       date: new Date(),
       id: (this.maxId += 1),
+      min,
+      sec
     };
   }
 
@@ -38,9 +40,9 @@ export default class Main extends Component {
     });
   };
 
-  addTask = (task) => {
+  addTask = (task, min, sec) => {
     if (task.trim()) {
-      const newTask = this.createNewTask(task);
+      const newTask = this.createNewTask(task, min, sec);
       this.setState(({ todoData }) => {
         const newArray = [...todoData, newTask];
         return {
