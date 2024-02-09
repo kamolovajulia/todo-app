@@ -10,7 +10,9 @@ export default class NewTaskForm extends Component {
     sec: ''
   };
 
-  submitState = () => {
+  submitState = (e) => {
+    e.preventDefault();
+    this.handleInputChange(e);
     this.props.onAddTask(this.state.label, this.state.min, this.state.sec);
     this.setState({
       label: '',
@@ -36,12 +38,7 @@ export default class NewTaskForm extends Component {
           placeholder='What needs to be done?'
           onChange={this.handleInputChange}
           value={this.state.label}
-          onKeyDown={event => {
-            if (event.key === 'Enter') {
-              this.submitState()
-            }
-          }
-          }
+
         ></input>
         <input name='min' id='min' className={style.newTodoForm__timer} placeholder="Min"
           value={this.state.min}
@@ -51,7 +48,8 @@ export default class NewTaskForm extends Component {
           value={this.state.sec}
           onChange={this.handleInputChange} >
         </input>
-      </form>
+        <button type='submit' className={style.disable}></button>
+      </form >
     );
   }
 }

@@ -5,7 +5,7 @@ import Task from '../task/task';
 
 import style from './task-list.module.css';
 
-const TaskList = ({ todo, filter, onDelete, onEdit, onComplete, onChange }) => {
+const TaskList = ({ todo, filter, onDelete, onEdit, onComplete, onChange, playTimer, stopTimer }) => {
 
   let elements;
 
@@ -29,6 +29,8 @@ const TaskList = ({ todo, filter, onDelete, onEdit, onComplete, onChange }) => {
         onComplete={() => onComplete(id)}
         onEdit={() => onEdit(id)}
         onChange={(e) => onChange(e, id)}
+        playTimer={() => playTimer(id)}
+        stopTimer={() => stopTimer(id)}
       />
     );
   });

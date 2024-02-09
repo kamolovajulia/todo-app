@@ -26,9 +26,64 @@ export default class Main extends Component {
       date: new Date(),
       id: (this.maxId += 1),
       min,
-      sec
+      sec,
+      paused: false,
+      over: false,
+      timerID: null
     };
   }
+
+  play = (id) => {
+    this.setState(({ todoData }) => {
+      const idx = todoData.findIndex((el) => el.id === id);
+      const oldTask = todoData[idx];
+      const { paused, timerID } = oldTask;
+      if (!timerID)
+        return {
+          todoData: [...todoData.slice(0, idx),
+          { ...oldTask, timerID: setInterval(() => this.tick(id), 1000) }
+            , ...todoData.slice(idx + 1)]
+        }
+      if (paused && timerID)
+        return {
+          todoData: [...todoData.slice(0, idx),
+          { ...oldTask, paused: false }
+            , ...todoData.slice(idx + 1)]
+        }
+    })
+  }
+
+  tick = (id) => {
+    const idx = this.state.todoData.findIndex((el) => el.id === id);
+    const oldTask = this.state.todoData[idx];
+    const { min, sec, over, paused } = oldTask;
+    if (over || paused) return;
+
+    if (Number(min) === 0 && Number(sec) === 0) this.setState(() => ({
+      todoData: [...this.state.todoData.slice(0, idx),
+      { ...oldTask, over: true, timerID: clearInterval(this.timerID) }
+        , ...this.state.todoData.slice(idx + 1)]
+    }))
+    else if (Number(sec) === 0) this.setState(() => ({
+      todoData: [...this.state.todoData.slice(0, idx),
+      { ...oldTask, min: Number(min) - 1, sec: 59 }
+        , ...this.state.todoData.slice(idx + 1)]
+    }))
+    else this.setState(() => ({
+      todoData: [...this.state.todoData.slice(0, idx),
+      { ...oldTask, sec: Number(sec) - 1 }
+        , ...this.state.todoData.slice(idx + 1)]
+    }))
+  }
+
+  stop = (id) => {
+    const idx = this.state.todoData.findIndex((el) => el.id === id);
+    const oldTask = this.state.todoData[idx];
+    const newTask = { ...oldTask, paused: true };
+    this.setState({
+      todoData: [...this.state.todoData.slice(0, idx), newTask, ...this.state.todoData.slice(idx + 1)]
+    });
+  };
 
   deleteItem = (id) => {
     this.setState(({ todoData }) => {
@@ -145,6 +200,8 @@ export default class Main extends Component {
           onComplete={this.completeTask}
           onEdit={this.editTask}
           onChange={this.onChange}
+          playTimer={this.play}
+          stopTimer={this.stop}
         />
         <Footer
           tasksCount={this.countActiveTasks()}

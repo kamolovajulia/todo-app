@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { formatDistanceToNow } from 'date-fns';
 
-import style from './task.module.css';
 import Timer from '../timer/timer';
 
+import style from './task.module.css';
+
 const Task = (props) => {
-  const { text, date, min, sec, completedStatus, editingStatus, onDelete, onComplete, onEdit, onChange } = props;
+  const { text, date, min, sec, completedStatus, editingStatus,
+    onDelete, onComplete, onEdit, onChange, playTimer, stopTimer } = props;
   const taskData = formatDistanceToNow(date, { includeSeconds: true }).replace('less than', '');
   let result;
   const [label, setLabel] = useState(text);
@@ -38,7 +40,7 @@ const Task = (props) => {
         <label>
           <span className={style.title}>{text}</span>
           <span className={`${style.description} ${style.timer}`}>
-            <Timer min={min} sec={sec} />
+            <Timer min={min} sec={sec} play={playTimer} stop={stopTimer} />
           </span>
           <span className={`${style.created} ${style.description}`}>created {taskData} ago</span>
         </label>
