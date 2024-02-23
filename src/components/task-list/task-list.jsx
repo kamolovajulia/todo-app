@@ -5,18 +5,17 @@ import Task from '../task/task';
 
 import style from './task-list.module.css';
 
-const TaskList = ({ todo, filter, onDelete, onEdit, onComplete, onChange, playTimer, stopTimer }) => {
-
+const TaskList = ({ todo, filter, onDelete, onEdit, onComplete, onChange, playTimer, stopTimer, setTime }) => {
   let elements;
 
   if (filter.completed) {
-    elements = todo.filter((el) => el.completedStatus)
+    elements = todo.filter((el) => el.completedStatus);
   }
   if (filter.active) {
-    elements = todo.filter((el) => !el.completedStatus)
+    elements = todo.filter((el) => !el.completedStatus);
   }
   if (filter.all) {
-    elements = [...todo]
+    elements = [...todo];
   }
 
   elements = elements.map((el) => {
@@ -25,12 +24,14 @@ const TaskList = ({ todo, filter, onDelete, onEdit, onComplete, onChange, playTi
       <Task
         {...itemProps}
         key={id}
+        id={id}
         onDelete={() => onDelete(id)}
         onComplete={() => onComplete(id)}
         onEdit={() => onEdit(id)}
         onChange={(e) => onChange(e, id)}
         playTimer={() => playTimer(id)}
         stopTimer={() => stopTimer(id)}
+        setTime={setTime}
       />
     );
   });

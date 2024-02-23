@@ -7,9 +7,28 @@ import Timer from '../timer/timer';
 import style from './task.module.css';
 
 const Task = (props) => {
-  const { text, date, min, sec, completedStatus, editingStatus,
-    onDelete, onComplete, onEdit, onChange, playTimer, stopTimer } = props;
+  const {
+    id,
+    text,
+    date,
+    min,
+    sec,
+    completedStatus,
+    editingStatus,
+    onDelete,
+    onComplete,
+    onEdit,
+    onChange,
+    playTimer,
+    stopTimer,
+    timer,
+    over,
+    paused,
+    setTime,
+  } = props;
+
   const taskData = formatDistanceToNow(date, { includeSeconds: true }).replace('less than', '');
+
   let result;
   const [label, setLabel] = useState(text);
 
@@ -40,7 +59,17 @@ const Task = (props) => {
         <label>
           <span className={style.title}>{text}</span>
           <span className={`${style.description} ${style.timer}`}>
-            <Timer min={min} sec={sec} play={playTimer} stop={stopTimer} />
+            <Timer
+              id={id}
+              min={min}
+              sec={sec}
+              play={playTimer}
+              stop={stopTimer}
+              timer={timer}
+              over={over}
+              paused={paused}
+              setTime={setTime}
+            />
           </span>
           <span className={`${style.created} ${style.description}`}>created {taskData} ago</span>
         </label>
