@@ -1,0 +1,13 @@
+export const ADD_TASK = 'ADD-TASK';
+export const UPDATE_TASK = 'UPDATE-TASK';
+export const SET_UPDATED_TASK = 'SET-UPDATED-TASK';
+export const COMPLETE_TASK = 'COMPLETE-TASK';
+export const DELETE_TASK = 'DELETE-TASK';
+export const SHOW_ALL_TASK = 'SHOW-ALL-TASK';
+export const SHOW_ACTIVE_TASK = 'SHOW-ACTIVE-TASK';
+export const SHOW_COMPLETED_TASK = 'SHOW-COMPLETED-TASK';
+export const CLEAR_COMPLETED_TASK = 'CLEAR-COMPLETED-TASK';
+export const COUNT_ACTIVE_TASKS = 'COUNT-ACTIVE-TASKS;';
+export const PLAY_TIMER = 'PLAY-TIMER';
+export const STOP_TIMER = 'STOP-TIMER';
+export const SET_TIMER = 'SET-TIMER';

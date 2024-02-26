@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import style from './new-task-form.module.css';
 
-const NewTaskForm = (props) => {
+const NewTaskForm = ({ onAddTask }) => {
   const [label, setLabel] = useState('');
   const [min, setMin] = useState('');
   const [sec, setSec] = useState('');
@@ -10,7 +10,7 @@ const NewTaskForm = (props) => {
   const submitState = (e) => {
     e.preventDefault();
     // if (Number(min) && Number(sec)) {
-    props.addTask(label, min, sec);
+    onAddTask(label, min, sec);
     setLabel('');
     setMin('');
     setSec('');

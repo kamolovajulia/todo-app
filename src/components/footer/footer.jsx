@@ -5,22 +5,19 @@ import TaskFilter from '../tasks-filter/task-filter';
 
 import style from './footer.module.css';
 
-const Footer = (props) => {
-  const { tasksCount, stateFilter, onAllTasks, onShowActive, onShowCompleted, clearCompleted } = props;
-  return (
-    <footer className={style.footer}>
-      <span className={style.todoCount}>{tasksCount} items left</span>
-      <ul className={style.filters}>
-        <TaskFilter label='All' status={stateFilter.all} onClick={() => onAllTasks()} />
-        <TaskFilter label='Active' status={stateFilter.active} onClick={() => onShowActive()} />
-        <TaskFilter label='Completed' status={stateFilter.completed} onClick={() => onShowCompleted()} />
-      </ul>
-      <button label='Clear completed' className={style.clearCompleted} onClick={() => clearCompleted()}>
-        Clear completed
-      </button>
-    </footer>
-  );
-};
+const Footer = (props) => (
+  <footer className={style.footer}>
+    <span className={style.todoCount}>{props.countActiveTasks} items left</span>
+    <ul className={style.filters}>
+      <TaskFilter label='All' status={props.filters.all} onClick={() => props.showAllTasks()} />
+      <TaskFilter label='Active' status={props.filters.active} onClick={() => props.showActive()} />
+      <TaskFilter label='Completed' status={props.filters.completed} onClick={() => props.showCompleted()} />
+    </ul>
+    <button label='Clear completed' className={style.clearCompleted} onClick={() => props.clearCompleted()}>
+      Clear completed
+    </button>
+  </footer>
+);
 
 Footer.propTypes = {
   tasksCount: PropTypes.number,

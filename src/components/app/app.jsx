@@ -6,6 +6,7 @@ import React from 'react';
 // components
 import Header from '../header/header';
 import Main from '../main/main';
+// import MainContainer from '../main/mainContainer';
 
 // styles
 import style from './app.module.css';
